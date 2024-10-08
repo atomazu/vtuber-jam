@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c40txbad2v5x"]
+[gd_scene load_steps=3 format=3 uid="uid://d3pednyfrlp2e"]
 
 [ext_resource type="Script" path="res://tests/tests.gd" id="1_w0w1c"]
+[ext_resource type="Script" path="res://tests/building_test.gd" id="2_8ayus"]
 
 [node name="Tests" type="Node"]
 script = ExtResource("1_w0w1c")
@@ -8,3 +9,6 @@ script = ExtResource("1_w0w1c")
 [node name="World" type="Node2D" parent="."]
 
 [node name="Buildings" type="Node2D" parent="World"]
+
+[node name="BuildingTest" type="Node" parent="."]
+script = ExtResource("2_8ayus")

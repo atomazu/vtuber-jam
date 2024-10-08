@@ -2,12 +2,18 @@ class_name Building
 extends Node2D
 
 
-func can_place(location) -> bool:
-	return false
+var sprite: Sprite2D
+var size: Vector2
 
+
+func _init(sprite_path, size):
+	sprite = Sprite2D.new()
+	sprite.texture = load(sprite_path)
+	self.size = size
+	pass
 
 func place(location) -> void:
-	pass
+	position = location
 
 
 func can_remove() -> bool:
