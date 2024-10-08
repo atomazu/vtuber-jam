@@ -1,12 +1,12 @@
 extends Node
 
-# Called when the node enters the scene tree for the first time.
+# Run every test and print the results
 func _ready() -> void:
 	var results = {}
 	for child in get_children():
-		var result = {}
 		if child is Test:
+			var result = {}
 			result = child.test()
-		results[child] = result
+			results[child] = result
 	
 	print(results)

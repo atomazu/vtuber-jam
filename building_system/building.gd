@@ -6,13 +6,14 @@ var sprite: Sprite2D
 var size: Vector2
 
 
-func _init(sprite_path, size):
+func _init(sprite_path: String, new_size: Vector2):
 	sprite = Sprite2D.new()
 	sprite.texture = load(sprite_path)
-	self.size = size
+	size = new_size
 	pass
 
-func place(location) -> void:
+
+func place(location: Vector2) -> void:
 	position = location
 
 
