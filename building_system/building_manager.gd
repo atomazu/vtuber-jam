@@ -1,12 +1,20 @@
 class_name BuildingManager
 extends Node
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var _buildings: Dictionary = {}
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func can_place(building: Building, location: int) -> bool:
+	return building.can_place()
+
+
+func place(building: Building, location: int) -> void:
+	_buildings[building] = building
+	if building.can_place(location):
+		building.place()
+
+
+func remove(building: Building) -> void:
+	_buildings.erase(building)
+	if building.can_remove():
+		building.remove()
