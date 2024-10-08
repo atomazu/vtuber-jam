@@ -1,14 +1,18 @@
 class_name Building
 extends Node2D
 
-func can_place():
+
+func can_place(location) -> bool:
+	return false
+
+
+func place() -> void:
 	pass
 
-func place():
-	pass
 
-func can_remove():
-	pass
+func can_remove() -> bool:
+	return false
 
-func remove():
+
+func remove() -> void:
 	pass
