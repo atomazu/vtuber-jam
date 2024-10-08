@@ -1,12 +1,14 @@
 class_name Building
 extends Node2D
 
+func can_place():
+	pass
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func place():
+	pass
 
+func can_remove():
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func remove():
 	pass
