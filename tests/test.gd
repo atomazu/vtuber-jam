@@ -18,6 +18,7 @@ func test() -> Dictionary:
 	
 	for t in tests:
 		results.tests[t.id] = {
+			"id": t.id,
 			"method": t.method,
 			"expected": t.expected,
 			"returned": call(t.method),
@@ -34,5 +35,5 @@ func add_test(id, method, expected) -> void:
 	tests.append({
 		"id": id,
 		"method": method,
-		"expected": expected
+		"expected": expected,
 		})

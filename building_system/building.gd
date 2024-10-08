@@ -10,7 +10,10 @@ func _init(sprite_path: String, new_size: Vector2):
 	sprite = Sprite2D.new()
 	sprite.texture = load(sprite_path)
 	size = new_size
-	pass
+
+
+func _ready() -> void:
+	add_child(sprite)
 
 
 func place(location: Vector2) -> void:

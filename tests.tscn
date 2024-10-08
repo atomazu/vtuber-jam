@@ -1,10 +1,75 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3pednyfrlp2e"]
+[gd_scene load_steps=4 format=3 uid="uid://d3pednyfrlp2e"]
 
 [ext_resource type="Script" path="res://tests/tests.gd" id="1_w0w1c"]
 [ext_resource type="Script" path="res://tests/building_manager_test.gd" id="2_ewsqx"]
+[ext_resource type="Script" path="res://tests/building_test.gd" id="3_dl15q"]
 
-[node name="Tests" type="Node"]
+[node name="TestSuite" type="Node"]
 script = ExtResource("1_w0w1c")
 
-[node name="BuildingManagerTest" type="Node" parent="."]
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Interface/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLable" type="Label" parent="Interface/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Tests"
+
+[node name="ExamTree" type="Tree" parent="Interface/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+columns = 2
+
+[node name="TestControls" type="VBoxContainer" parent="Interface"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="RerunButton" type="Button" parent="Interface/TestControls"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+text = "Rerun"
+
+[node name="ExitButton" type="Button" parent="Interface/TestControls"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+text = "Exit"
+
+[node name="ExamList" type="Node" parent="."]
+
+[node name="BuildingManagerTest" type="Node" parent="ExamList"]
 script = ExtResource("2_ewsqx")
+
+[node name="BuildingTest" type="Node" parent="ExamList"]
+script = ExtResource("3_dl15q")
