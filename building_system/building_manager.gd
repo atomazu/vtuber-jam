@@ -5,13 +5,13 @@ var _buildings: Dictionary = {}
 
 
 func can_place(building: Building, location: int) -> bool:
-	return building.can_place()
+	return building.can_place(location)
 
 
 func place(building: Building, location: int) -> void:
 	_buildings[building] = building
 	if building.can_place(location):
-		building.place()
+		building.place(location)
 
 
 func remove(building: Building) -> void:

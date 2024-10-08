@@ -6,7 +6,7 @@ func can_place(location) -> bool:
 	return false
 
 
-func place() -> void:
+func place(location) -> void:
 	pass
 
 
