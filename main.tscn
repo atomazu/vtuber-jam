@@ -1,7 +1,64 @@
-[gd_scene format=3 uid="uid://dachgnl8qkq4b"]
+[gd_scene load_steps=4 format=3 uid="uid://dachgnl8qkq4b"]
 
-[node name="main" type="Node"]
+[ext_resource type="Script" path="res://main.gd" id="1_4i0r6"]
+[ext_resource type="Script" path="res://building_system/building_manager.gd" id="1_40cr7"]
+[ext_resource type="Script" path="res://interface/interface.gd" id="3_5ufib"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_4i0r6")
+
+[node name="BuildingManager" type="Node" parent="."]
+script = ExtResource("1_40cr7")
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Buildings" type="Node2D" parent="World"]
+[node name="Buildings" type="Node2D" parent="World" groups=["bm_root"]]
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_5ufib")
+
+[node name="DebugInterface" type="PanelContainer" parent="Interface"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Interface/DebugInterface"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="Interface/DebugInterface/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="SelectedBuildingHint" type="Label" parent="Interface/DebugInterface/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Currently selected building: "
+
+[node name="SelectedBuildingLabel" type="Label" parent="Interface/DebugInterface/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "{building}"
+
+[node name="ScreenPositionHint" type="Label" parent="Interface/DebugInterface/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Screen position:"
+
+[node name="ScreenPositionLabel" type="Label" parent="Interface/DebugInterface/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "{pos}"
+
+[node name="GridPositionHint" type="Label" parent="Interface/DebugInterface/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Grid position:"
+
+[node name="GridPositionLabel" type="Label" parent="Interface/DebugInterface/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "{grid_pos}"

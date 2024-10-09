@@ -7,21 +7,20 @@
 [node name="TestSuite" type="Node"]
 script = ExtResource("1_w0w1c")
 
-[node name="Interface" type="Control" parent="."]
-layout_mode = 3
+[node name="Interface" type="HSplitContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Control" type="Control" parent="Interface"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="PanelContainer" type="PanelContainer" parent="Interface"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Interface/PanelContainer"]
 layout_mode = 2
@@ -44,8 +43,7 @@ size_flags_vertical = 3
 focus_mode = 0
 columns = 2
 
-[node name="TestControls" type="VBoxContainer" parent="Interface"]
-layout_mode = 1
+[node name="TestControls" type="VBoxContainer" parent="."]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -54,13 +52,13 @@ offset_left = -55.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="RerunButton" type="Button" parent="Interface/TestControls"]
+[node name="RerunButton" type="Button" parent="TestControls"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 text = "Rerun"
 
-[node name="ExitButton" type="Button" parent="Interface/TestControls"]
+[node name="ExitButton" type="Button" parent="TestControls"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
