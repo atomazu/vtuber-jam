@@ -1,29 +1,30 @@
 class_name BuildingManagerTest
 extends Test
 
+var root = Node2D.new()
+var manager = BuildingManager.new(root)
+
 
 func _init() -> void:
 	add_test("Test Can Place", "test_can_place", true)
-	add_test("Test Place", "test_place", true)
 
 
-func test_can_place() -> bool:
-	var root = Node2D.new()
-	get_tree().get_root().add_child.call_deferred(root)
-	
-	var manager = BuildingManager.new(root)
+func _ready() -> void:
+	add_child(root)
+
+
+func test_placing_intersecting() -> bool:
 	var building = Building.new("res://assets/test_building.png", Vector2.ONE * 4)
 	
-	root.queue_free()
-	return manager.can_place(building, Vector2(0, 0))
-
-
-func test_place() -> bool:
-	var root = Node2D.new()
-	get_tree().get_root().add_child.call_deferred(root)
+	# Empty field, should be able to place.
+	if manager.intersects(building, Vector2.ZERO):
+		return false
 	
-	var manager = BuildingManager.new(root)
-	var building = Building.new("res://assets/test_building.png", Vector2.ONE * 4)
-	manager.place(building, Vector2(0, 0))
-	root.queue_free()
-	return building in manager._buildings
+	manager.add_building(building, Vector2.ZERO)
+	var other = Building.new("res://assets/test_building.png", Vector2.ONE * 4)
+	
+	# Building already there, shouldn't be able to place.
+	if not other.intersects(building, Vector2.ZERO):
+		return false
+
+	return true

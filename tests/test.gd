@@ -21,7 +21,7 @@ func test() -> Dictionary:
 			"id": t.id,
 			"method": t.method,
 			"expected": t.expected,
-			"returned": call(t.method),
+			"returned": await call_test(t.method),
 		}
 		var success = results.tests[t.id].returned == results.tests[t.id].expected
 		results.tests[t.id]["success"] = success
@@ -37,3 +37,9 @@ func add_test(id, method, expected) -> void:
 		"method": method,
 		"expected": expected,
 		})
+
+## Call method if it exist, else return null
+func call_test(method):
+	if has_method(method):
+		return await call(method)
+	return null
