@@ -20,9 +20,5 @@ func place(location: Vector2) -> void:
 	position = location
 
 
-func can_remove() -> bool:
-	return false
-
-
 func remove() -> void:
-	pass
+	queue_free()
