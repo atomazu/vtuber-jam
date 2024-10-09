@@ -12,14 +12,14 @@ func _ready() -> void:
 
 func run() -> void:
 	exam_tree.clear()
-	var exam_results: Dictionary = run_exams()
+	var exam_results: Dictionary = await run_exams()
 	create_result_tree(exam_results)
 
 func run_exams() -> Dictionary:
 	var exam_results: Dictionary = {}
 	for child in exam_list.get_children():
 		if child is Test:
-			var result: Dictionary = child.test()
+			var result: Dictionary = await child.test()
 			result["id"] = child.name
 			exam_results[child.name] = result
 	return exam_results
@@ -45,6 +45,6 @@ func create_test_items(parent: TreeItem, tests: Dictionary) -> void:
 		test_item.set_text(0, test.id)
 		test_item.set_text(1, "Success: " + str(test.success))
 		test_item.collapsed = test.success
-		
+
 		exam_tree.create_item(test_item).set_text(0, "Expected: " + str(test.expected))
 		exam_tree.create_item(test_item).set_text(0, "Returned: " + str(test.returned))
