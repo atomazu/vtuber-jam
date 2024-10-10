@@ -13,4 +13,4 @@ func grid_to_screen(pos: Vector2) -> Vector2:
 
 
 func get_mouse_cell() -> Vector2:
-	return get_viewport().get_mouse_position() / grid_size
+	return get_viewport().canvas_transform.affine_inverse().basis_xform(get_viewport().get_mouse_position())

@@ -3,6 +3,8 @@ extends Node
 
 var _buildings: Dictionary = {}
 var _root: Node2D
+var selected_building = ""
+
 
 func _init(root: Node2D = null):
 	_root = root
