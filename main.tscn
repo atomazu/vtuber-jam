@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dachgnl8qkq4b"]
+[gd_scene load_steps=8 format=3 uid="uid://dachgnl8qkq4b"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_4i0r6"]
 [ext_resource type="Script" path="res://building_system/building_manager.gd" id="1_40cr7"]
 [ext_resource type="Script" path="res://interface/interface.gd" id="3_5ufib"]
+[ext_resource type="Script" path="res://addons/grid_display/grid_display.gd" id="3_7h7y6"]
 [ext_resource type="Script" path="res://interface/debug_interface.gd" id="4_fbv3n"]
 [ext_resource type="Script" path="res://camera.gd" id="5_wl8uc"]
+[ext_resource type="Texture2D" uid="uid://c21di7jo7qjtp" path="res://assets/R.jpeg" id="6_er37l"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_4i0r6")
@@ -12,7 +14,21 @@ script = ExtResource("1_4i0r6")
 [node name="BuildingManager" type="Node" parent="."]
 script = ExtResource("1_40cr7")
 
+[node name="Grid Display" type="Node2D" parent="."]
+position = Vector2(-512, -512)
+script = ExtResource("3_7h7y6")
+grid_size = Vector2(64, 64)
+line_size = Vector2(1, 1)
+border_width = 1.0
+cell_size = Vector2(16, 16)
+border_color = Color(1, 1, 1, 0.254902)
+vline_color = Color(1, 1, 1, 0.0862745)
+hline_color = Color(1, 1, 1, 0.0588235)
+metadata/_edit_lock_ = true
+
 [node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+editor_draw_limits = true
 script = ExtResource("5_wl8uc")
 
 [node name="World" type="Node2D" parent="."]
@@ -70,3 +86,6 @@ text = "Grid position:"
 [node name="GridPositionLabel" type="Label" parent="CanvasLayer/Interface/DebugInterface/MarginContainer/GridContainer"]
 layout_mode = 2
 text = "{grid_pos}"
+
+[node name="R" type="Sprite2D" parent="."]
+texture = ExtResource("6_er37l")
