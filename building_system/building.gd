@@ -15,11 +15,17 @@ enum BuildingState {IDLE, SHOOTING, DESTROYED}
 func _init(building_data: BuildingData):
 	sprite = Sprite2D.new()
 	sprite.texture = load(building_data.sprite_path)
-	collision_shape = CollisionShape2D.new()
+
+	
 	circle_shape = CircleShape2D.new()
 	circle_shape.radius = building_data.shot_range
+	
+	collision_shape = CollisionShape2D.new()
 	collision_shape.shape = circle_shape
+	
 	shot_area = Area2D.new()
+	
+	
 	size = building_data.size
 	shot_speed = building_data.shot_speed
 

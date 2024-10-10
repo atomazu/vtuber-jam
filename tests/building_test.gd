@@ -12,6 +12,7 @@ func _init() -> void:
 
 
 func test_place_building() -> bool:
+	add_child(building)
 	building.place(Vector2.ONE * 4)
 	if building.position == Vector2.ONE * 4:
 		return true
