@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dachgnl8qkq4b"]
+[gd_scene load_steps=5 format=3 uid="uid://dachgnl8qkq4b"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_4i0r6"]
 [ext_resource type="Script" path="res://building_system/building_manager.gd" id="1_40cr7"]
 [ext_resource type="Script" path="res://interface/interface.gd" id="3_5ufib"]
+[ext_resource type="Script" path="res://interface/debug_interface.gd" id="4_fbv3n"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_4i0r6")
@@ -27,6 +28,7 @@ script = ExtResource("3_5ufib")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("4_fbv3n")
 
 [node name="MarginContainer" type="MarginContainer" parent="Interface/DebugInterface"]
 layout_mode = 2
