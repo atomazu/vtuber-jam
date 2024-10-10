@@ -3,6 +3,7 @@ extends Node
 
 ## The tests added through add_test are stored here
 var tests: Array = []
+@export var enabled: bool = false
 
 ## Implement this in your tests
 func _init() -> void:

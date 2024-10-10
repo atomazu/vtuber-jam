@@ -42,7 +42,7 @@ func remove() -> void:
 func _on_body_entered():
 	state = BuildingState.SHOOTING
 	if shot_area.has_overlapping_bodies() && state == BuildingState.SHOOTING:
-		get_tree().create_timer(shot_speed).timeout
+		await get_tree().create_timer(shot_speed).timeout
 		enemys = shot_area.get_overlapping_bodies()
 		print(enemys[0])
 		_on_body_entered()

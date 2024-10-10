@@ -18,7 +18,7 @@ func run() -> void:
 func run_exams() -> Dictionary:
 	var exam_results: Dictionary = {}
 	for child in exam_list.get_children():
-		if child is Test:
+		if child is Test and child.enabled:
 			var result: Dictionary = await child.test()
 			result["id"] = child.name
 			exam_results[child.name] = result
