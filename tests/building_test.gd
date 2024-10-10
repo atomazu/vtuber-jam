@@ -2,8 +2,8 @@ class_name BuildingTest
 extends Test
 
 var buildingfactory = BuildingFactory.new()
-var building = buildingfactory.create_bulding(BuildingFactory.Type.ARROW_TOWER)
-var building2 = buildingfactory.create_bulding(buildingfactory.Type.SNIPER_TOWER)
+var building2 = buildingfactory.create_bulding(BuildingFactory.Type.ARROW_TOWER)
+var building = buildingfactory.create_bulding(buildingfactory.Type.SNIPER_TOWER)
 
 
 func _init() -> void:
@@ -13,8 +13,10 @@ func _init() -> void:
 
 func test_place_building() -> bool:
 	add_child(building)
-	building.place(Vector2.ONE * 4)
-	if building.position == Vector2.ONE * 4:
+	add_child(building2)
+	building.place(Grid.grid_to_screen(Vector2.ONE * 2))
+	building2.place(Grid.grid_to_screen(Vector2.ONE * 4))
+	if building.position == Vector2(0,0):
 		return true
 	return false
 
