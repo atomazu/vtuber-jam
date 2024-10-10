@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3pednyfrlp2e"]
+[gd_scene load_steps=6 format=3 uid="uid://d3pednyfrlp2e"]
 
 [ext_resource type="Script" path="res://tests/tests.gd" id="1_w0w1c"]
+[ext_resource type="PackedScene" uid="uid://c7xijk2bc4dai" path="res://grid_display.tscn" id="2_4m30p"]
 [ext_resource type="Script" path="res://tests/building_manager_test.gd" id="2_ewsqx"]
 [ext_resource type="Script" path="res://tests/building_test.gd" id="3_dl15q"]
 [ext_resource type="Script" path="res://camera.gd" id="4_vw3gs"]
 
 [node name="TestSuite" type="Node"]
 script = ExtResource("1_w0w1c")
+
+[node name="Grid Display" parent="." instance=ExtResource("2_4m30p")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

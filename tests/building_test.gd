@@ -14,8 +14,8 @@ func _init() -> void:
 func test_place_building() -> bool:
 	add_child(building)
 	add_child(building2)
-	building.place(Grid.grid_to_screen(Vector2.ONE * 2))
-	building2.place(Grid.grid_to_screen(Vector2.ONE * 4))
+	building.place(Grid.grid_to_world(Vector2.ONE * 2))
+	building2.place(Grid.grid_to_world(Vector2.ONE * 4))
 	if building.position == Vector2(0,0):
 		return true
 	return false
