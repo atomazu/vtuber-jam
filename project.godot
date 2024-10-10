@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Grid="*res://building_system/grid.gd"
+Debug="*res://debug.gd"
 
 [editor]
 

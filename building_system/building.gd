@@ -1,7 +1,6 @@
 class_name Building
 extends Node2D
 
-
 var sprite: Sprite2D
 var size: Vector2
 var shot_area: Area2D
@@ -10,13 +9,14 @@ var collision_shape: CollisionShape2D
 var circle_shape: CircleShape2D
 var state: BuildingState
 var enemys
-enum BuildingState {IDLE, SHOOTING, DESTROYED}
+
+enum BuildingState { IDLE, SHOOTING, DESTROYED }
+
 
 func _init(building_data: BuildingData):
 	sprite = Sprite2D.new()
 	sprite.texture = load(building_data.sprite_path)
 
-	
 	circle_shape = CircleShape2D.new()
 	circle_shape.radius = building_data.shot_range
 	
@@ -24,7 +24,6 @@ func _init(building_data: BuildingData):
 	collision_shape.shape = circle_shape
 	
 	shot_area = Area2D.new()
-	
 	
 	size = building_data.size
 	shot_speed = building_data.shot_speed
@@ -42,7 +41,6 @@ func place(location: Vector2) -> void:
 
 func remove() -> void:
 	queue_free()
-
 
 
 func _on_body_entered():

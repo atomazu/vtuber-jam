@@ -4,7 +4,7 @@ extends Camera2D
 @export var zoom_speed: float = 70.0
 @export var min_zoom: float = 1.0
 @export var max_zoom: float = 6.0
-@export var camera_bounds: Vector2 = Vector2(250, 250)
+@export var camera_bounds: Vector2 = Vector2(Grid.cell_size * Grid.grid_size.x, Grid.cell_size * Grid.grid_size.y)
 
 var target_zoom: Vector2 = zoom
 var velocity: Vector2 = Vector2.ZERO
@@ -23,8 +23,14 @@ func update_movement(delta: float) -> void:
 
 
 func update_zoom(delta: float) -> void:
+	target_zoom = target_zoom.clamp(Vector2.ONE * min_zoom, Vector2.ONE * max_zoom)
 	zoom = zoom.lerp(target_zoom, delta * zoom_speed)
 	zoom = zoom.clamp(Vector2.ONE * min_zoom, Vector2.ONE * max_zoom)
+	
+	if zoom > Vector2.ONE * 1.5:
+		Grid.toggle_grid(true)
+	else:
+		Grid.toggle_grid(false)
 
 
 func apply_bounds() -> void:
