@@ -76,6 +76,7 @@ script = ExtResource("2_ewsqx")
 
 [node name="BuildingTest" type="Node" parent="ExamList"]
 script = ExtResource("3_dl15q")
+enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)

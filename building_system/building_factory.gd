@@ -19,7 +19,7 @@ func create_bulding(type: Type) -> Building:
 					0,
 					0,
 					0,
-					0,
+					3,
 					BuildingData.ShotType.DEFAULT,
 					Vector2.ONE
 
@@ -37,7 +37,7 @@ func create_bulding(type: Type) -> Building:
 					0,
 					0,
 					0,
-					0,
+					10,
 					BuildingData.ShotType.DEFAULT,
 					Vector2.ONE
 				)
