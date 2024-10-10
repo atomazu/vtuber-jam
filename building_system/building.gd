@@ -63,7 +63,7 @@ func _on_body_entered(body):
 	state = BuildingState.SHOOTING
 	if shot_area.has_overlapping_areas() && state == BuildingState.SHOOTING:
 		await get_tree().create_timer(shot_speed).timeout
-		if not shot_area.has_overlapping_areas() || not state == BuildingState.SHOOTING: return
+		if not shot_area.has_overlapping_areas(): return
 		enemys = shot_area.get_overlapping_areas()
 		print(enemys[0])
 		enemys[0].get_parent().get_damaged(damage)
