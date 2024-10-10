@@ -4,7 +4,10 @@ extends Camera2D
 @export var zoom_speed: float = 70.0
 @export var min_zoom: float = 1.0
 @export var max_zoom: float = 6.0
-@export var camera_bounds: Vector2 = Vector2(Grid.cell_size * Grid.grid_size.x, Grid.cell_size * Grid.grid_size.y)
+@export var camera_bounds: Vector2 = Vector2(
+	Grid.cell_size * Grid.grid_size.x / 2, 
+	Grid.cell_size * Grid.grid_size.y / 2
+	)
 
 var target_zoom: Vector2 = zoom
 var velocity: Vector2 = Vector2.ZERO
