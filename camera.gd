@@ -1,45 +1,47 @@
 extends Camera2D
 
-var cam_speed = 750
-var velocity = Vector2.ZERO
+@export var cam_speed: float = 750.0
+@export var zoom_speed: float = 70.0
+@export var min_zoom: float = 1.0
+@export var max_zoom: float = 6.0
+@export var camera_bounds: Vector2 = Vector2(250, 250)
 
-var min_x = -250
-var max_x = 250
-var min_y = -250
-var max_y = 250
-var new_zoom = zoom
-var zoom_speed = 70
+var target_zoom: Vector2 = zoom
+var velocity: Vector2 = Vector2.ZERO
 
 
 func _process(delta: float) -> void:
-	move_cam(delta)
-	
+	update_movement(delta)
+	update_zoom(delta)
+	apply_bounds()
+
+
+func update_movement(delta: float) -> void:
+	velocity = get_input_velocity() * delta / zoom
 	position += velocity
 	velocity = Vector2.ZERO
-	zoom = lerp(zoom, new_zoom, delta * zoom_speed)
-	zoom = clamp(zoom, Vector2.ONE, Vector2.ONE * 6)
-	
-	# Apply camera bounds
-	position.x = clamp(position.x, min_x, max_x)
-	position.y = clamp(position.y, min_y, max_y)
 
 
-func move_cam(delta: float) -> void:
-	if Input.is_action_pressed("cam_right"):
-		velocity.x = cam_speed * delta
-	elif Input.is_action_pressed("cam_left"):
-		velocity.x = -cam_speed * delta
-	if Input.is_action_pressed("cam_up"):
-		velocity.y = -cam_speed * delta
-	elif Input.is_action_pressed("cam_down"):
-		velocity.y = cam_speed * delta
-	
-	velocity /= zoom
+func update_zoom(delta: float) -> void:
+	zoom = zoom.lerp(target_zoom, delta * zoom_speed)
+	zoom = zoom.clamp(Vector2.ONE * min_zoom, Vector2.ONE * max_zoom)
 
 
-func _input(event):
+func apply_bounds() -> void:
+	position = position.clamp(-camera_bounds, camera_bounds)
+
+
+func get_input_velocity() -> Vector2:
+	var input_velocity = Vector2.ZERO
+	input_velocity.x = Input.get_axis("cam_left", "cam_right")
+	input_velocity.y = Input.get_axis("cam_up", "cam_down")
+	return input_velocity * cam_speed
+
+
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			new_zoom = zoom * 1.1
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			new_zoom = zoom * 0.9
+		match event.button_index:
+			MOUSE_BUTTON_WHEEL_UP:
+				target_zoom *= 1.1
+			MOUSE_BUTTON_WHEEL_DOWN:
+				target_zoom *= 0.9

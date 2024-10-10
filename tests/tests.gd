@@ -1,9 +1,9 @@
 extends Node
 
-@onready var exam_tree: Tree = $Interface/PanelContainer/MarginContainer/VBoxContainer/ExamTree
+@onready var exam_tree: Tree = $CanvasLayer/Interface/PanelContainer/MarginContainer/VBoxContainer/ExamTree
 @onready var exam_list: Node = $ExamList
-@onready var rerun_button: Button = $TestControls/RerunButton
-@onready var exit_button: Button = $TestControls/ExitButton
+@onready var rerun_button: Button = $CanvasLayer/TestControls/RerunButton
+@onready var exit_button: Button = $CanvasLayer/TestControls/ExitButton
 
 func _ready() -> void:
 	rerun_button.pressed.connect(run)

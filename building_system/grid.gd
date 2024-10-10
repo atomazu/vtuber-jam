@@ -1,13 +1,11 @@
 extends Node2D
 
-
-var cell_size = 32
+var cell_size = 16
 var grid_display: GridDisplay
 
 func _ready() -> void:
-	grid_display = GridDisplay.new()
+	grid_display = get_tree().get_first_node_in_group("grid_display")
 	grid_display.cell_size = Vector2(cell_size, cell_size)
-	add_child(grid_display)
 
 
 func screen_to_grid(pos: Vector2) -> Vector2:
