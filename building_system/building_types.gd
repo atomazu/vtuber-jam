@@ -3,9 +3,10 @@ extends Node
 
 
 var building_list: Dictionary = {
-    "dart": {
+    "arrow": {
         "name": null,
         "sprite_path": null,
+        "shot_sprite_path": null,
         "hp": null,
         "damage": null,
         "range": null,
