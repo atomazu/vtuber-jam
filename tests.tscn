@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3pednyfrlp2e"]
+[gd_scene load_steps=5 format=3 uid="uid://d3pednyfrlp2e"]
 
 [ext_resource type="Script" path="res://tests/tests.gd" id="1_w0w1c"]
-[ext_resource type="Script" path="res://interface/debug_interface.gd" id="2_0wl4v"]
 [ext_resource type="Script" path="res://tests/building_manager_test.gd" id="2_ewsqx"]
 [ext_resource type="Script" path="res://tests/building_test.gd" id="3_dl15q"]
-[ext_resource type="Script" path="res://addons/grid_display/grid_display.gd" id="4_abwlq"]
 [ext_resource type="Script" path="res://camera.gd" id="4_vw3gs"]
 
 [node name="TestSuite" type="Node"]
@@ -70,46 +68,6 @@ size_flags_vertical = 3
 focus_mode = 0
 text = "Exit"
 
-[node name="DebugInterface" type="PanelContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_0wl4v")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DebugInterface"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/DebugInterface/MarginContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="SelectedBuildingHint" type="Label" parent="CanvasLayer/DebugInterface/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "Currently selected building: "
-
-[node name="SelectedBuildingLabel" type="Label" parent="CanvasLayer/DebugInterface/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "{building}"
-
-[node name="ScreenPositionHint" type="Label" parent="CanvasLayer/DebugInterface/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "Screen position:"
-
-[node name="ScreenPositionLabel" type="Label" parent="CanvasLayer/DebugInterface/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "{pos}"
-
-[node name="GridPositionHint" type="Label" parent="CanvasLayer/DebugInterface/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "Grid position:"
-
-[node name="GridPositionLabel" type="Label" parent="CanvasLayer/DebugInterface/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "{grid_pos}"
-
 [node name="ExamList" type="Node" parent="."]
 
 [node name="BuildingManagerTest" type="Node" parent="ExamList"]
@@ -122,15 +80,3 @@ enabled = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 script = ExtResource("4_vw3gs")
-
-[node name="Grid Display" type="Node2D" parent="." groups=["grid_display"]]
-position = Vector2(-512, -512)
-script = ExtResource("4_abwlq")
-grid_size = Vector2(64, 64)
-line_size = Vector2(1, 1)
-border_width = 1.0
-cell_size = Vector2(16, 16)
-border_color = Color(1, 1, 1, 0.254902)
-vline_color = Color(1, 1, 1, 0.0862745)
-hline_color = Color(1, 1, 1, 0.0588235)
-metadata/_edit_lock_ = true

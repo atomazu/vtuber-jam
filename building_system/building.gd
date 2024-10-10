@@ -1,6 +1,5 @@
 class_name Building
 extends Node2D
-
 var parent = get_parent()
 var sprite: Sprite2D
 var sprite_path: String
@@ -22,7 +21,6 @@ func _init(building_data: BuildingData):
 	sprite_death_path = building_data.death_sprite_path
 	sprite.texture = load(sprite_path)
 
-	
 	circle_shape = CircleShape2D.new()
 	circle_shape.radius = building_data.shot_range * Grid.cell_size
 	
@@ -30,7 +28,6 @@ func _init(building_data: BuildingData):
 	collision_shape.shape = circle_shape
 	
 	shot_area = Area2D.new()
-	
 	
 	size = building_data.size
 	shot_speed = building_data.shot_speed
