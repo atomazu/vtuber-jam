@@ -1,7 +1,7 @@
 class_name BuildingData
 extends Resource
 
-enum ShotType { DEFAULT }
+enum ShotType { DEFAULT, ARROW }
 
 var title: String 
 var sprite_path: String

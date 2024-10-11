@@ -22,7 +22,7 @@ static func create_building(type: Type) -> Building:
 				4.0,
 				1.0,
 				10.0,
-				BuildingData.ShotType.DEFAULT,
+				BuildingData.ShotType.ARROW,
 				Vector2.ONE
 			)
 		Type.SNIPER_TOWER:
@@ -37,7 +37,7 @@ static func create_building(type: Type) -> Building:
 				5.0,
 				2.0,
 				3.0,
-				BuildingData.ShotType.DEFAULT,
+				BuildingData.ShotType.ARROW,
 				Vector2.ONE
 			)
 		_:
