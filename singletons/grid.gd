@@ -35,11 +35,26 @@ func get_mouse_global() -> Vector2:
 
 
 func highlight_cell(pos: Vector2) -> void:
-	if (pos.x > -grid_size.x / 2 and pos.x < grid_size.x / 2
-	and pos.y > -grid_size.y / 2 and pos.y < grid_size.y / 2):
+	if is_in_bounds(pos):
 		var rect = Rect2(grid_to_world(pos), Vector2(cell_size, cell_size))
 		_draw_queue.append({"rect": rect})
 	queue_redraw()
+
+
+func is_in_bounds(cell) -> bool:
+	return (cell.x > -grid_size.x / 2 and cell.x < grid_size.x / 2
+	and cell.y > -grid_size.y / 2 and cell.y < grid_size.y / 2)
+
+
+func rect_in_bounds(rect: Rect2) -> bool:
+	var half_size = rect.size / 2
+	var top_left = rect.position - half_size
+	var bottom_right = rect.position + half_size
+	
+	return (is_in_bounds(top_left) and 
+			is_in_bounds(bottom_right) and
+			is_in_bounds(Vector2(top_left.x, bottom_right.y)) and
+			is_in_bounds(Vector2(bottom_right.x, top_left.y)))
 
 
 func _draw() -> void:
@@ -54,6 +69,10 @@ func toggle_grid(grid: bool, border: bool = true) -> void:
 
 
 func update_opacity(opacity: float):
-	_grid_display.border_color.a = opacity
+	#_grid_display.border_color.a = opacity
 	_grid_display.hline_color.a = opacity
 	_grid_display.vline_color.a = opacity
+
+
+func get_opacity() -> float:
+	return _grid_display.hline_color.a

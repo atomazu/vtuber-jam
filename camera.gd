@@ -11,11 +11,13 @@ extends Camera2D
 
 var target_zoom: Vector2 = zoom
 var velocity: Vector2 = Vector2.ZERO
+var target_opacity: float = 0.25
 
 
 func _process(delta: float) -> void:
 	update_movement(delta)
 	update_zoom(delta)
+	update_opacity(delta)
 	apply_bounds()
 
 
@@ -30,10 +32,12 @@ func update_zoom(delta: float) -> void:
 	zoom = zoom.lerp(target_zoom, delta * zoom_speed)
 	zoom = zoom.clamp(Vector2.ONE * min_zoom, Vector2.ONE * max_zoom)
 	
-	if zoom > Vector2.ONE * 1.5:
-		Grid.toggle_grid(true)
-	else:
-		Grid.toggle_grid(false)
+	var t = inverse_lerp(max_zoom, min_zoom, (zoom.x + zoom.y) / 2)
+	target_opacity = lerp(0.1, 0.005, t)
+
+
+func update_opacity(delta: float) -> void:
+	Grid.update_opacity(lerp(Grid.get_opacity(), target_opacity, delta * 50))
 
 
 func apply_bounds() -> void:

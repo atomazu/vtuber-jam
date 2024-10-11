@@ -45,5 +45,5 @@ static func create_building(type: Type) -> Building:
 			return null
 	
 	var b = Building.new(building_data)
-	b.position = Vector2.ZERO
+	b.set_meta("type", type)
 	return b
