@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3pednyfrlp2e"]
+[gd_scene load_steps=5 format=3 uid="uid://d3pednyfrlp2e"]
 
 [ext_resource type="Script" path="res://tests/tests.gd" id="1_xietp"]
 [ext_resource type="PackedScene" uid="uid://c7xijk2bc4dai" path="res://singletons/grid_display.tscn" id="2_i26ud"]
 [ext_resource type="Script" path="res://tests/building_manager_test.gd" id="3_wo74k"]
 [ext_resource type="Script" path="res://tests/building_test.gd" id="4_1u55s"]
-[ext_resource type="Script" path="res://camera.gd" id="5_aijpy"]
 
 [node name="TestSuite" type="Node"]
 script = ExtResource("1_xietp")
@@ -85,7 +84,3 @@ enabled = true
 [node name="BuildingTest" type="Node" parent="ExamList"]
 script = ExtResource("4_1u55s")
 enabled = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
-script = ExtResource("5_aijpy")

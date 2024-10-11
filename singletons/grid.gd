@@ -9,6 +9,12 @@ var _draw_queue = []
 func _ready() -> void:
 	_grid_display = get_tree().get_first_node_in_group("grid_display")
 	update_grid_display()
+	Debug.add_debug_info("Cell Size", cell_size)
+	Debug.add_debug_info("Grid Size", grid_size)
+
+
+func _process(delta: float) -> void:
+	highlight_cell(get_mouse_cell())
 
 
 func update_grid_display() -> void:

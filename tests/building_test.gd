@@ -19,7 +19,7 @@ func test_place_building() -> bool:
 	arrow_tower.place(Grid.grid_to_world(Vector2.ONE * 2))
 	sniper_tower.place(Grid.grid_to_world(Vector2.ONE * 4))
 	sniper_tower2.place(Grid.grid_to_world(Vector2.ONE * 3))
-	if arrow_tower.position == Vector2(0,0):
+	if arrow_tower.position == Grid.grid_to_world(Vector2(2, 2)):
 		return true
 	return false
 

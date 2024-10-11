@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Grid="*res://singletons/grid.gd"
 Debug="*res://debug/debug.gd"
+Camera="*res://singletons/camera.gd"
 
 [editor]
 

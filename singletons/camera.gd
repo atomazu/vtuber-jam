@@ -14,11 +14,16 @@ var velocity: Vector2 = Vector2.ZERO
 var target_opacity: float = 0.25
 
 
+func _init() -> void:
+	zoom = Vector2.ONE * 3
+
+
 func _process(delta: float) -> void:
 	update_movement(delta)
 	update_zoom(delta)
 	update_opacity(delta)
 	apply_bounds()
+	Debug.add_debug_info("Camera Zoom", "%0.2f" % ((zoom.x + zoom.y) / 2))
 
 
 func update_movement(delta: float) -> void:

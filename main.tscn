@@ -1,19 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dachgnl8qkq4b"]
+[gd_scene load_steps=4 format=3 uid="uid://dachgnl8qkq4b"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_4i0r6"]
 [ext_resource type="Script" path="res://interface/interface.gd" id="3_5ufib"]
 [ext_resource type="PackedScene" uid="uid://c7xijk2bc4dai" path="res://singletons/grid_display.tscn" id="3_7k4su"]
-[ext_resource type="Script" path="res://camera.gd" id="5_wl8uc"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_4i0r6")
 
 [node name="Grid Display" parent="." instance=ExtResource("3_7k4su")]
-
-[node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
-editor_draw_limits = true
-script = ExtResource("5_wl8uc")
 
 [node name="World" type="Node2D" parent="."]
 
