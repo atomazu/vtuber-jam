@@ -4,6 +4,9 @@ extends Node
 ## The tests added through add_test are stored here
 var tests: Array = []
 @export var enabled: bool = false
+@export var in_steps: bool = false
+var step_button: Button
+signal test_completed(data)
 
 ## Implement this in your tests
 func _init() -> void:
@@ -28,6 +31,10 @@ func test() -> Dictionary:
 		results.tests[t.id]["success"] = success
 		if not success:
 			results.result = false
+		
+		test_completed.emit(results.tests[t.id])
+		if in_steps:
+			await step_button.pressed
 	
 	return results
 
@@ -44,3 +51,7 @@ func call_test(method):
 	if has_method(method):
 		return await call(method)
 	return null
+
+
+func cleanup():
+	queue_free()

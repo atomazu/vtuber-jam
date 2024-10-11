@@ -19,34 +19,39 @@ func building_intersects(building: Building, cell: Vector2) -> bool:
 	var building_rect = Rect2(cell, building.size)
 	
 	for other in _buildings:
-		var other_rect = Rect2(other.position, other.size)
-		
-		if building_rect.intersects(other_rect):
-			return true
-	
+		if other != building:
+			var other_rect = Rect2(Grid.world_to_grid(other.position), other.size)
+			if building_rect.intersects(other_rect):
+				return true
 	return false
 
 
-func add_building(type: BuildingFactory.Type, cell: Vector2) -> void:
-	var building = _factory.create_bulding(type)
+func add_building(building, cell: Vector2) -> void:
+	if building is BuildingFactory.Type:
+		building = _factory.create_bulding(building)
 	
 	if not building_intersects(building, cell):
 		_root.add_child(building)
 		_buildings[building] = building
-		building.place(Grid.grid_to_screen(cell))
+		building.place(Grid.grid_to_world(cell))
+	else:
+		push_warning("Building intersects, can't place! (Cell: %s)" % str(cell))
 
 
 func remove_building(building: Building) -> void:
-	_buildings.erase(building)
-	building.remove()
+	if _buildings.has(building):
+		_buildings.erase(building)
+		building.remove()
+	else:
+		push_warning("Building isn't in building list!")
 
 
-func has_building(bulding: Building) -> bool:
-	return bulding in _buildings
+func has_building(building: Building) -> bool:
+	return _buildings.has(building)
 
 
 func get_building(cell: Vector2) -> Building:
 	for building in _buildings:
-		if building.position == Grid.grid_to_screen(cell):
+		if building.position == Grid.grid_to_world(cell):
 			return building
 	return null
