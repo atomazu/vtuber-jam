@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_4i0r6"]
 [ext_resource type="Script" path="res://building_system/building_manager.gd" id="1_40cr7"]
 [ext_resource type="Script" path="res://interface/interface.gd" id="3_5ufib"]
-[ext_resource type="PackedScene" uid="uid://c7xijk2bc4dai" path="res://grid_display.tscn" id="3_7k4su"]
+[ext_resource type="PackedScene" uid="uid://c7xijk2bc4dai" path="res://singletons/grid_display.tscn" id="3_7k4su"]
 [ext_resource type="Script" path="res://camera.gd" id="5_wl8uc"]
 
 [node name="Main" type="Node"]

@@ -1,9 +1,9 @@
 class_name BuildingTest
 extends Test
 
-var buildingfactory = BuildingFactory.new()
-var building2 = buildingfactory.create_bulding(BuildingFactory.Type.ARROW_TOWER)
-var building = buildingfactory.create_bulding(buildingfactory.Type.SNIPER_TOWER)
+var factory = BuildingFactory
+var arrow_tower = factory.create_building(factory.Type.ARROW_TOWER)
+var sniper_tower = factory.create_building(factory.Type.SNIPER_TOWER)
 
 
 func _init() -> void:
@@ -12,18 +12,18 @@ func _init() -> void:
 
 
 func test_place_building() -> bool:
-	add_child(building)
-	add_child(building2)
-	building.place(Grid.grid_to_world(Vector2.ONE * 2))
-	building2.place(Grid.grid_to_world(Vector2.ONE * 4))
-	if building.position == Vector2(0,0):
+	add_child(arrow_tower)
+	add_child(sniper_tower)
+	arrow_tower.place(Grid.grid_to_world(Vector2.ONE * 2))
+	sniper_tower.place(Grid.grid_to_world(Vector2.ONE * 4))
+	if arrow_tower.position == Vector2(0,0):
 		return true
 	return false
 
 
 func test_remove_building() -> bool:
-	building.remove()
+	arrow_tower.remove()
 	await get_tree().process_frame
-	if is_instance_valid(building):
+	if is_instance_valid(arrow_tower):
 		return false
 	return true

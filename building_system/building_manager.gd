@@ -4,7 +4,7 @@ extends Node
 var _buildings: Dictionary = {}
 var _root: Node2D
 var selected_building = ""
-
+var _factory = BuildingFactory.new()
 
 func _init(root: Node2D = null):
 	_root = root
@@ -27,10 +27,12 @@ func building_intersects(building: Building, cell: Vector2) -> bool:
 	return false
 
 
-func add_building(building: Building, cell: Vector2) -> void:
-	_root.add_child(building)
-	_buildings[building] = building
+func add_building(type: BuildingFactory.Type, cell: Vector2) -> void:
+	var building = _factory.create_bulding(type)
+	
 	if not building_intersects(building, cell):
+		_root.add_child(building)
+		_buildings[building] = building
 		building.place(Grid.grid_to_screen(cell))
 
 

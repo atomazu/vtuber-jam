@@ -5,7 +5,7 @@ var debug_interface: PanelContainer
 var debug_info: Dictionary = {}
 
 var enabled: bool = OS.is_debug_build()
-const DEBUG = preload("res://debug.tscn")
+const DEBUG = preload("res://debug/debug.tscn")
 
 func _ready() -> void:
 	add_child(DEBUG.instantiate())
