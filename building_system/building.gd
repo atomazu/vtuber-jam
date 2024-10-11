@@ -47,7 +47,7 @@ func _init(building_data: BuildingData):
 	damage = building_data.damage
 
 
-func _process(delta):
+func _process(_delta):
 	if shot_area.has_overlapping_areas() && state != BuildingState.SHOOTING: shooting()
 
 
