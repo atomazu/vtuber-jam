@@ -51,3 +51,9 @@ func _draw() -> void:
 func toggle_grid(grid: bool, border: bool = true) -> void:
 	_grid_display.draw_border = border
 	_grid_display.draw_grid = grid
+
+
+func update_opacity(opacity: float):
+	_grid_display.border_color.a = opacity
+	_grid_display.hline_color.a = opacity
+	_grid_display.vline_color.a = opacity

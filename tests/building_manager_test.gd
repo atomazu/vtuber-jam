@@ -17,7 +17,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	add_child(root)
+	if enabled:
+		add_child(root)
 
 
 func test_empty_field_no_intersection() -> bool:
@@ -29,7 +30,7 @@ func test_existing_building_intersects() -> bool:
 	manager.add_building(arrow_tower, Vector2.ZERO)
 	
 	# Building already there, shouldn't be able to place.
-	return manager.building_intersects(arrow_tower, Vector2.ZERO)
+	return manager.building_intersects(sniper_tower, Vector2.ZERO)
 
 
 func test_removed_building_no_intersection() -> bool:

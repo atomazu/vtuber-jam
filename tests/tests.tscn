@@ -38,7 +38,7 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Interface/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TitleLable" type="Label" parent="CanvasLayer/Interface/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Interface/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Tests"
@@ -49,6 +49,11 @@ size_flags_vertical = 3
 focus_mode = 0
 columns = 2
 
+[node name="StatusLabel" type="Label" parent="CanvasLayer/Interface/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Waiting for start..."
+
 [node name="TestControls" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 11
 anchor_left = 1.0
@@ -58,12 +63,12 @@ offset_left = -55.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="RerunButton" type="Button" parent="CanvasLayer/TestControls"]
+[node name="NextButton" type="Button" parent="CanvasLayer/TestControls"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
 disabled = true
-text = "Rerun"
+text = "Next"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/TestControls"]
 layout_mode = 2
@@ -75,6 +80,7 @@ text = "Exit"
 
 [node name="BuildingManagerTest" type="Node" parent="ExamList"]
 script = ExtResource("3_wo74k")
+enabled = true
 
 [node name="BuildingTest" type="Node" parent="ExamList"]
 script = ExtResource("4_1u55s")

@@ -13,6 +13,7 @@ static func create_building(type: Type) -> Building:
 		Type.ARROW_TOWER:
 			building_data = BuildingData.new(
 				"Arrow Tower",
+				Vector2.ONE * 4,
 				"res://assets/R.jpeg",
 				"",
 				"res://assets/RDead.jpg",
@@ -22,12 +23,12 @@ static func create_building(type: Type) -> Building:
 				4.0,
 				1.0,
 				10.0,
-				BuildingData.ShotType.ARROW,
-				Vector2.ONE
+				BuildingData.ShotType.ARROW
 			)
 		Type.SNIPER_TOWER:
 			building_data = BuildingData.new(
 				"Sniper Tower",
+				Vector2.ONE * 4,
 				"res://assets/test_building.png",
 				"",
 				"",
@@ -37,11 +38,12 @@ static func create_building(type: Type) -> Building:
 				5.0,
 				2.0,
 				3.0,
-				BuildingData.ShotType.ARROW,
-				Vector2.ONE
+				BuildingData.ShotType.ARROW
 			)
 		_:
 			push_error("Unknown building type: " + str(type))
 			return null
-
-	return Building.new(building_data)
+	
+	var b = Building.new(building_data)
+	b.position = Vector2.ZERO
+	return b
