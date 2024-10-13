@@ -1,9 +1,11 @@
 class_name ProjectileFactory
 
+enum Type { DEFAULT, ARROW }
 
-static func create_projectile(type: BuildingData.ShotType, damage: int, speed_modifier: float, target, spawn) -> Projectile:
+
+static func create_projectile(type: Type, damage: int, speed_modifier: float, target, spawn) -> Projectile:
 	match type:
-		BuildingData.ShotType.ARROW:
+		Type.ARROW:
 			return Projectile.new(
 				ProjectileData.new(
 					"res://assets/Arrow.jpeg",

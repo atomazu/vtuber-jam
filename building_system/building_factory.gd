@@ -1,9 +1,6 @@
 class_name BuildingFactory
 
-enum Type {
-	ARROW_TOWER,
-	SNIPER_TOWER
-}
+enum Type { ARROW_TOWER, SNIPER_TOWER }
 
 
 static func create_building(type: Type) -> Building:
@@ -23,7 +20,7 @@ static func create_building(type: Type) -> Building:
 				4.0,
 				1.0,
 				10.0,
-				BuildingData.ShotType.ARROW
+				ProjectileFactory.Type.ARROW
 			)
 		Type.SNIPER_TOWER:
 			building_data = BuildingData.new(
@@ -38,7 +35,7 @@ static func create_building(type: Type) -> Building:
 				5.0,
 				2.0,
 				3.0,
-				BuildingData.ShotType.ARROW
+				ProjectileFactory.Type.ARROW
 			)
 		_:
 			push_error("Unknown building type: " + str(type))

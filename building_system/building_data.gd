@@ -1,8 +1,6 @@
 class_name BuildingData
 extends Resource
 
-enum ShotType { DEFAULT, ARROW }
-
 var title: String 
 var sprite_path: String
 var shot_sprite_path: String = ""
@@ -13,8 +11,9 @@ var damage: int = 1
 var shot_range: float = 5.0
 var firerate: float = 1.0
 var shot_speed: float = 10.0
-var shot_type: ShotType = ShotType.DEFAULT
+var shot_type: ProjectileFactory.Type = ProjectileFactory.Type.DEFAULT
 var size: Vector2 = Vector2.ONE
+
 
 func _init(
 	new_title: String, 
@@ -28,7 +27,7 @@ func _init(
 	new_shot_range: float = 5.0, 
 	new_firerate: float = 1.0, 
 	new_shot_speed: float = 10.0,
-	new_shot_type: ShotType = ShotType.DEFAULT
+	new_shot_type: ProjectileFactory.Type = ProjectileFactory.Type.DEFAULT
 	):
 		title = new_title
 		size = new_size

@@ -10,10 +10,10 @@ var location
 
 
 func _init(new_sprite_path, new_damage: int, new_speed_modifier: float, new_speed: float, new_target, spawn):
-    sprite_path = new_sprite_path
-    damage = new_damage
-    speed_modifier = new_speed_modifier
-    speed = new_speed
-    target = new_target
-    location = spawn
-    
+	sprite_path = new_sprite_path
+	damage = new_damage
+	speed_modifier = new_speed_modifier
+	speed = new_speed
+	target = new_target
+	location = spawn
+	
