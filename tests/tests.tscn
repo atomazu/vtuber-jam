@@ -75,14 +75,6 @@ size_flags_vertical = 3
 focus_mode = 0
 text = "Exit"
 
-[node name="DragIndicator" type="Control" parent="CanvasLayer" groups=["drag_indicator"]]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="ExamList" type="Node" parent="."]
 
 [node name="BuildingManagerTest" type="Node" parent="ExamList"]
