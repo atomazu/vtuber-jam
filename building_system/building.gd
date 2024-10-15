@@ -13,7 +13,9 @@ var shot_area: Area2D
 var shot_speed: float
 var	firerate: float
 var collision_shape: CollisionShape2D
+var collision_shape_buidling: CollisionShape2D
 var circle_shape: CircleShape2D
+var square_shape: RectangleShape2D
 var state: BuildingState
 var enemys
 var target
@@ -27,24 +29,32 @@ enum BuildingState { IDLE, SHOOTING, DESTROYED }
 
 
 func _init(building_data: BuildingData):
+	size = building_data.size
 	sprite = Sprite2D.new()
 	sprite_path = building_data.sprite_path
 	sprite_death_path = building_data.death_sprite_path
 	sprite.texture = load(sprite_path)
 	circle_shape = CircleShape2D.new()
 	circle_shape.radius = building_data.shot_range * Grid.cell_size
+	square_shape = RectangleShape2D.new()
+	square_shape.size = size * Grid.cell_size
+
 	
 	collision_shape = CollisionShape2D.new()
 	collision_shape.shape = circle_shape
+	collision_shape_buidling = CollisionShape2D.new()
+	collision_shape_buidling.shape = square_shape
 	
 	shot_area = Area2D.new()
 	
-	size = building_data.size
 	firerate = 60 / building_data.firerate / 60
 	shot_speed = building_data.shot_speed
 	projectile_type = building_data.shot_type
 	health = building_data.health
 	damage = building_data.damage
+	print(square_shape.size)
+	print(Grid.cell_size)
+	print(size)
 
 
 func _process(_delta):
@@ -54,6 +64,7 @@ func _process(_delta):
 func _ready() -> void:
 	add_child(shot_area)
 	add_child(sprite)
+	add_child(collision_shape_buidling)
 	shot_area.add_child(collision_shape)
 
 
@@ -76,6 +87,7 @@ func destroy():
 	sprite.queue_free()
 	collision_shape.queue_free()
 	shot_area.queue_free()
+	collision_shape_buidling.queue_free()
 	queue_free()
 
 
