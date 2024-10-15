@@ -11,7 +11,7 @@ static func create_projectile(type: Type, damage: int, speed_modifier: float, ta
 					"res://assets/Arrow.jpeg",
 					damage,
 					speed_modifier,
-					0.5,
+					2,
 					target,
 					spawn
 				)

@@ -86,7 +86,6 @@ func shooting():
 	if is_instance_valid(target): 
 		projectile = projectile_factory.create_projectile(projectile_type, damage, shot_speed, target, position)
 		projectile_parent.add_child.call_deferred(projectile)
-		enemys[0].get_parent().get_damaged(damage)
 		await get_tree().create_timer(firerate).timeout
 	state = BuildingState.IDLE
 	print("Damage: ", damage,  " | Target: ", target.get_meta("name"), " | Health: ", health)
