@@ -52,9 +52,6 @@ func _init(building_data: BuildingData):
 	projectile_type = building_data.shot_type
 	health = building_data.health
 	damage = building_data.damage
-	print(square_shape.size)
-	print(Grid.cell_size)
-	print(size)
 
 
 func _process(_delta):
