@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dachgnl8qkq4b"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_4i0r6"]
+[ext_resource type="Script" path="res://interface/interface.gd" id="3_5ufib"]
+[ext_resource type="PackedScene" uid="uid://c7xijk2bc4dai" path="res://singletons/grid_display.tscn" id="3_7k4su"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_4i0r6")
+
+[node name="Grid Display" parent="." instance=ExtResource("3_7k4su")]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Buildings" type="Node2D" parent="World" groups=["bm_root"]]
+
+[node name="Projectiles" type="Node2D" parent="World" groups=["projectiles"]]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_5ufib")
+
+[node name="DragIndicator" type="Control" parent="CanvasLayer" groups=["drag_indicator"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

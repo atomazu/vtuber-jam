@@ -1,0 +1,89 @@
+extends Camera2D
+
+
+@onready var drag_indicator: Control = get_tree().get_first_node_in_group("drag_indicator")
+
+@export var cam_speed: float = 750.0
+@export var zoom_speed: float = 70.0
+@export var min_zoom: float = 1.0
+@export var max_zoom: float = 6.0
+@export var camera_bounds: Vector2 = Vector2(
+	Grid.cell_size * Grid.grid_size.x / 2, 
+	Grid.cell_size * Grid.grid_size.y / 2 )
+
+var target_zoom: Vector2 = zoom
+var velocity: Vector2 = Vector2.ZERO
+var target_opacity: float = 0.25
+var dragging: bool = false
+var drag_start: Vector2 = Vector2.ZERO
+
+
+func _ready() -> void:
+	zoom = Vector2.ONE * 3
+
+
+func _process(delta: float) -> void:
+	update_movement(delta)
+	update_zoom(delta)
+	update_opacity(delta)
+	apply_bounds()
+	update_debug_info()
+
+
+func update_movement(delta: float) -> void:
+	if not dragging:
+		velocity = get_input_velocity() * delta / zoom
+		position += velocity
+		velocity = Vector2.ZERO
+
+
+func update_zoom(delta: float) -> void:
+	target_zoom = target_zoom.clamp(Vector2.ONE * min_zoom, Vector2.ONE * max_zoom)
+	zoom = zoom.lerp(target_zoom, delta * zoom_speed)
+	zoom = zoom.clamp(Vector2.ONE * min_zoom, Vector2.ONE * max_zoom)
+	
+	var t = inverse_lerp(max_zoom, min_zoom, (zoom.x + zoom.y) / 2)
+	target_opacity = lerp(0.1, 0.005, t)
+
+
+func update_opacity(delta: float) -> void:
+	Grid.update_opacity(lerp(Grid.get_opacity(), target_opacity, delta * 50))
+
+
+func apply_bounds() -> void:
+	position = position.clamp(-camera_bounds, camera_bounds)
+
+
+func get_input_velocity() -> Vector2:
+	var input_velocity = Vector2.ZERO
+	input_velocity.x = Input.get_axis("cam_left", "cam_right")
+	input_velocity.y = Input.get_axis("cam_up", "cam_down")
+	return input_velocity * cam_speed
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		match event.button_index:
+			MOUSE_BUTTON_WHEEL_UP:
+				target_zoom *= 1.1
+			MOUSE_BUTTON_WHEEL_DOWN:
+				target_zoom *= 0.9
+			MOUSE_BUTTON_MIDDLE:
+				if event.pressed:
+					dragging = true
+					drag_start = event.position
+					drag_indicator.set_default_cursor_shape(Control.CURSOR_DRAG)
+				else:
+					dragging = false
+					drag_indicator.set_default_cursor_shape(Control.CURSOR_ARROW)
+	elif event is InputEventMouseMotion:
+		if dragging:
+			position += (drag_start - event.position) / zoom
+			drag_start = event.position
+
+
+func update_debug_info() -> void:
+	Debug.add_debug_info("Camera Zoom", "%0.2f" % ((zoom.x + zoom.y) / 2))
+	Debug.add_debug_info("Camera Position", "(%0.2f, %0.2f)" % [position.x, position.y])
+	Debug.add_debug_info("Camera Dragging", str(dragging))
+	Debug.add_debug_info("Target Opacity", "%0.3f" % target_opacity)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7xijk2bc4dai"]
+
+[ext_resource type="Script" path="res://addons/grid_display/grid_display.gd" id="1_4oti4"]
+
+[node name="Grid Display" type="Node2D" groups=["grid_display"]]
+script = ExtResource("1_4oti4")
+line_size = Vector2(1, 1)
+border_width = 1.0
+cell_size = Vector2(16, 16)
+border_color = Color(1, 1, 1, 0.254902)
+vline_color = Color(1, 1, 1, 0.0862745)
+hline_color = Color(1, 1, 1, 0.0588235)
+metadata/_edit_lock_ = true

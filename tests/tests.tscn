@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3pednyfrlp2e"]
+
+[ext_resource type="Script" path="res://tests/tests.gd" id="1_xietp"]
+[ext_resource type="PackedScene" uid="uid://c7xijk2bc4dai" path="res://singletons/grid_display.tscn" id="2_i26ud"]
+[ext_resource type="Script" path="res://tests/building_manager_test.gd" id="3_wo74k"]
+[ext_resource type="Script" path="res://tests/building_test.gd" id="4_1u55s"]
+
+[node name="TestSuite" type="Node"]
+script = ExtResource("1_xietp")
+
+[node name="Grid Display" parent="." instance=ExtResource("2_i26ud")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DragIndicator" type="Control" parent="CanvasLayer" groups=["drag_indicator"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Interface" type="HSplitContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/Interface"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Interface"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Interface/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Interface/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Interface/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Tests"
+
+[node name="ExamTree" type="Tree" parent="CanvasLayer/Interface/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+columns = 2
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/Interface/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Waiting for start..."
+
+[node name="TestControls" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="NextButton" type="Button" parent="CanvasLayer/TestControls"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+disabled = true
+text = "Next"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/TestControls"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+text = "Exit"
+
+[node name="ExamList" type="Node" parent="."]
+
+[node name="BuildingManagerTest" type="Node" parent="ExamList"]
+script = ExtResource("3_wo74k")
+enabled = true
+
+[node name="BuildingTest" type="Node" parent="ExamList"]
+script = ExtResource("4_1u55s")
+enabled = true
